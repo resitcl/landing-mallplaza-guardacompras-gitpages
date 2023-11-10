@@ -3274,6 +3274,12 @@ section.section--form .section__body {
     padding: 40px;
   }
 }
+section.section--form .section__body .section__sep {
+  display: block;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  padding-top: 20px;
+  margin-top: 20px;
+}
 section.section--media .section__body {
   box-shadow: rgba(0,0,0,0.08) 0px 4px 10px 0px;
   background-color: #fff;
