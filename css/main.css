@@ -90,6 +90,7 @@ h5,
   margin-bottom: 20px;
   font-family: 'AktivGrotesk ', sans-serif;
   font-weight: 600;
+  color: #580a3f;
 }
 p {
   margin-bottom: 20px;
@@ -301,7 +302,7 @@ svg {
   .cols.cols--scroll>div {
     display: inline-block;
     vertical-align: top;
-    width: 300px;
+    width: 200px;
     white-space: normal;
     margin: 0;
   }
@@ -1609,6 +1610,39 @@ article.article--features:hover {
   transition: 0.2s ease;
   box-shadow: 0px 0px 5px 1px #e9004b;
 }
+article.article--who {
+  padding: 10px;
+  box-shadow: rgba(0,0,0,0.08) 0px 4px 10px 0px;
+  background-color: #fff;
+  border-radius: 20px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  text-align: center;
+  min-height: 170px;
+}
+@media (min-width: 720px) {
+  article.article--who {
+    padding: 20px;
+  }
+}
+article.article--who .article__icon {
+  margin-bottom: 10px;
+}
+article.article--who .article__icon img {
+  width: initial;
+  height: initial;
+  max-width: 80px;
+}
+article.article--who .article__title {
+  font-size: 14px;
+  line-height: 18px;
+}
 .bg {
   position: absolute;
   top: 0;
@@ -1925,25 +1959,25 @@ textarea:focus {
 input::-webkit-input-placeholder,
 select::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
-  color: #495057;
+  color: rgba(0,0,0,0.5);
   font-weight: bold;
 }
 input::-moz-placeholder,
 select::-moz-placeholder,
 textarea::-moz-placeholder {
-  color: #495057;
+  color: rgba(0,0,0,0.5);
   font-weight: bold;
 }
 input:-ms-input-placeholder,
 select:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
-  color: #495057;
+  color: rgba(0,0,0,0.5);
   font-weight: bold;
 }
 input::placeholder,
 select::placeholder,
 textarea::placeholder {
-  color: #495057;
+  color: rgba(0,0,0,0.5);
   font-weight: bold;
 }
 input[type=checkbox],
@@ -2105,6 +2139,9 @@ textarea {
 }
 .form__button button img {
   width: 25px;
+}
+.form__checkbox label a {
+  color: #e9004b;
 }
 header {
   position: fixed;
@@ -2983,7 +3020,6 @@ section .section__header .section__title {
   position: relative;
   display: block;
   margin-bottom: 20px;
-  color: rgba(6,44,48,0.8);
 }
 @media (min-width: 720px) {
   section .section__header .section__title {
@@ -3260,8 +3296,24 @@ section.section--main .section__content .section__buttons .btn:last-child {
     margin-right: 0;
   }
 }
+section.section--who .section__header {
+  margin-bottom: 40px;
+}
+section.section--form .section__who {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+section.section--form .section__tabs {
+  text-align: center;
+}
+section.section--form .section__title {
+  text-align: center !important;
+}
 section.section--form .section__form {
   text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
 }
 section.section--form .section__body {
   box-shadow: rgba(0,0,0,0.08) 0px 4px 10px 0px;
@@ -3389,8 +3441,14 @@ section.section--state .section__states.section__states--20:before {
 section.section--state .section__states.section__states--25:before {
   width: 25%;
 }
+section.section--state .section__states.section__states--33:before {
+  width: 33%;
+}
 section.section--state .section__states.section__states--50:before {
   width: 50%;
+}
+section.section--state .section__states.section__states--66:before {
+  width: 66%;
 }
 section.section--state .section__states.section__states--75:before {
   width: 75%;
@@ -3463,18 +3521,30 @@ section.section--state .section__states .section__state .section__icon img {
   }
 }
 section.section--state .section__states .section__state .section__text {
-  font-size: 12px;
+  font-size: 10px;
   line-height: 16px;
+}
+@media (min-width: 720px) {
+  section.section--state .section__states .section__state .section__text {
+    font-size: 12px;
+    line-height: 16px;
+  }
 }
 .tabs .tabs__header {
   position: relative;
   display: block;
-  text-align: left;
+  text-align: center;
   color: #000;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   white-space: nowrap;
+  margin: 0 auto;
   margin-bottom: 40px;
+  white-space: nowrap;
+  margin: 0 -20px -20px;
+  padding: 0 20px 20px;
+  margin-bottom: 40px;
+  padding-bottom: 0;
 }
 @media (min-width: 720px) {
   .tabs .tabs__header {
@@ -3483,6 +3553,8 @@ section.section--state .section__states .section__state .section__text {
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 40px;
   }
 }
 .tabs .tabs__header:after {
