@@ -6,8 +6,8 @@
     <link href="./img/icons/Isotipo_verde.svg" rel="shortcut icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="css/main.css?v=74810" rel="stylesheet" type="text/css">
-    <script src="js/main.js?v=74810" type="text/javascript"></script>
+    <link href="css/main.css?v=42877" rel="stylesheet" type="text/css">
+    <script src="js/main.js?v=42877" type="text/javascript"></script>
     <!-- Meta tags facebook-->
     <meta property="og:title" content="#">
     <meta property="og:description" content="#">
@@ -32,13 +32,13 @@
       <section class="section--main">
         <div class="section__wrap"> 
           <div class="section__body">
-            <div class="section__bg">
-              <div class="bg"><img src="img/uploads/background-1.jpeg"></div>
+            <div class="section__bg section__bg--mobile">
+              <div class="bg"><img src="img/uploads/banner-guardacompras-mobile.png"></div>
+            </div>
+            <div class="section__bg section__bg--desktop">
+              <div class="bg"><img src="img/uploads/banner-guardacompras-desktop.png"></div>
             </div>
             <div class="section__content">
-              <div class="section__image"> <img src="img/icons/logo-guardacompras.png"></div>
-              <p class="section__description">Esta navidad pongamos la magia al centro</p>
-              <p class="section__description">Regístrate y solicita tu servicio para guardar tus compras</p>
               <div class="section__buttons"><a data-goto=".section--form" data-tabs-1 class="btn">Solicitar Guardar</a><a data-goto=".section--form" data-tabs-2 class="btn btn--white">Solicitar delivery</a></div>
             </div>
           </div>
@@ -87,7 +87,7 @@
                     </div>
                     <div class="section__form">
                       <h4 class="section__title">Llena los siguientes datos</h4>
-                      <form class="form">
+                      <form class="form form--validation">
                         <div class="cols"> 
                           <div class="col-xs-12">
                             <div class="cols"> 
@@ -96,17 +96,17 @@
                                   <div class="form__input"> 
                                     <select name="#">
                                       <option value="#" disabled selected>Selecciona el mall</option>
-                                      <option value="#">Vehicula venenatis laoreet
+                                      <option value="#">Potenti rutrum taciti
                                       </option>
-                                      <option value="#">Duis cursus velit
+                                      <option value="#">Nibh habitasse vehicula
                                       </option>
-                                      <option value="#">Quam nulla adipiscing
+                                      <option value="#">Blandit dui lacus
                                       </option>
-                                      <option value="#">Vel molestie fames
+                                      <option value="#">Vulputate tristique placerat
                                       </option>
-                                      <option value="#">Hendrerit lobortis leo
+                                      <option value="#">Etiam odio curabitur
                                       </option>
-                                      <option value="#">Iaculis urna conubia
+                                      <option value="#">Nibh mauris gravida
                                       </option>
                                     </select>
                                   </div>
@@ -117,17 +117,17 @@
                                   <div class="form__input"> 
                                     <select name="#">
                                       <option value="#" disabled selected>Selecciona tienda</option>
-                                      <option value="#">Donec tristique bibendum
+                                      <option value="#">Luctus sapien elit
                                       </option>
-                                      <option value="#">Viverra aliquam est
+                                      <option value="#">Pretium leo ac
                                       </option>
-                                      <option value="#">Curabitur magna platea
+                                      <option value="#">Himenaeos iaculis conubia
                                       </option>
-                                      <option value="#">Elementum habitasse viverra
+                                      <option value="#">Congue rutrum etiam
                                       </option>
-                                      <option value="#">Fusce facilisis malesuada
+                                      <option value="#">Placerat laoreet id
                                       </option>
-                                      <option value="#">Fames vehicula semper
+                                      <option value="#">Suscipit lobortis fermentum
                                       </option>
                                     </select>
                                   </div>
@@ -141,9 +141,9 @@
                                 </div>
                               </div>
                               <div class="col-md-6">
-                                <div class="form__element"> 
-                                  <div class="form__input"> 
-                                    <input type="text" name="#" placeholder="RUT">
+                                <div class="form__element">
+                                  <div class="form__input">
+                                    <input type="rut" name="#" placeholder="Ingrese rut sin puntos ni guión" required class="input-rut">
                                   </div>
                                 </div>
                               </div>
@@ -154,17 +154,10 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="col-md-2">
-                                <div class="form__element"> 
-                                  <div class="form__input"> 
-                                    <input type="text" name="#" value="+56">
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-md-4">
-                                <div class="form__element"> 
-                                  <div class="form__input"> 
-                                    <input type="text" name="#" placeholder="Teléfono">
+                              <div class="col-md-6">
+                                <div class="form__element">
+                                  <div class="form__input">
+                                    <input id="phone" placeholder="Teléfono" type="text" name="#" value="+569" required>
                                   </div>
                                 </div>
                               </div>
@@ -178,17 +171,17 @@
                                   <div class="form__input"> 
                                     <select name="#">
                                       <option value="#" disabled selected>Ciudad</option>
-                                      <option value="#">Eu diam est
+                                      <option value="#">At hac nullam
                                       </option>
-                                      <option value="#">Hac semper dui
+                                      <option value="#">Consectetur laoreet elementum
                                       </option>
-                                      <option value="#">Nunc eu diam
+                                      <option value="#">Integer venenatis quisque
                                       </option>
-                                      <option value="#">Condimentum molestie semper
+                                      <option value="#">Dictum ut conubia
                                       </option>
-                                      <option value="#">Elit ut vivamus
+                                      <option value="#">Etiam fringilla lectus
                                       </option>
-                                      <option value="#">Aliquet pretium suscipit
+                                      <option value="#">Duis velit sociosqu
                                       </option>
                                     </select>
                                   </div>
@@ -199,17 +192,17 @@
                                   <div class="form__input"> 
                                     <select name="#">
                                       <option value="#" disabled selected>Comuna</option>
-                                      <option value="#">A lacinia arcu
+                                      <option value="#">Malesuada diam elementum
                                       </option>
-                                      <option value="#">Ullamcorper viverra purus
+                                      <option value="#">Rutrum sagittis vivamus
                                       </option>
-                                      <option value="#">Vitae semper turpis
+                                      <option value="#">Posuere egestas malesuada
                                       </option>
-                                      <option value="#">Elementum habitant id
+                                      <option value="#">Auctor class neque
                                       </option>
-                                      <option value="#">Vehicula primis id
+                                      <option value="#">Sed nostra non
                                       </option>
-                                      <option value="#">Accumsan posuere luctus
+                                      <option value="#">Nunc cubilia fames
                                       </option>
                                     </select>
                                   </div>
@@ -286,24 +279,24 @@
                     </div>
                     <div class="section__form">
                       <h4 class="section__title">Llena los siguientes datos</h4>
-                      <form class="form">
+                      <form class="form form--validation">
                         <div class="cols">
                           <div class="col-md-6">
                             <div class="form__element"> 
                               <div class="form__input"> 
                                 <select name="#">
                                   <option value="#" disabled selected>Selecciona el mall</option>
-                                  <option value="#">Consequat cursus class
+                                  <option value="#">Nullam interdum purus
                                   </option>
-                                  <option value="#">Himenaeos laoreet molestie
+                                  <option value="#">Facilisis aliquam velit
                                   </option>
-                                  <option value="#">Nec vehicula phasellus
+                                  <option value="#">Tortor mattis aliquam
                                   </option>
-                                  <option value="#">Leo in consectetur
+                                  <option value="#">Orci per gravida
                                   </option>
-                                  <option value="#">Curabitur etiam facilisis
+                                  <option value="#">Odio nisi iaculis
                                   </option>
-                                  <option value="#">Nisl pulvinar interdum
+                                  <option value="#">Fermentum potenti praesent
                                   </option>
                                 </select>
                               </div>
@@ -314,17 +307,17 @@
                               <div class="form__input"> 
                                 <select name="#">
                                   <option value="#" disabled selected>Selecciona tienda</option>
-                                  <option value="#">Aliquam nisi himenaeos
+                                  <option value="#">Adipiscing praesent consectetur
                                   </option>
-                                  <option value="#">Tristique torquent mauris
+                                  <option value="#">Dictumst quam nisl
                                   </option>
-                                  <option value="#">Primis pellentesque nostra
+                                  <option value="#">Mattis faucibus feugiat
                                   </option>
-                                  <option value="#">Venenatis rutrum phasellus
+                                  <option value="#">Dictum tristique massa
                                   </option>
-                                  <option value="#">Habitasse tempor massa
+                                  <option value="#">Litora ligula euismod
                                   </option>
-                                  <option value="#">Auctor per pharetra
+                                  <option value="#">Colus accumsan bibendum
                                   </option>
                                 </select>
                               </div>
@@ -338,9 +331,9 @@
                             </div>
                           </div>
                           <div class="col-md-6"> 
-                            <div class="form__element"> 
-                              <div class="form__input"> 
-                                <input type="text" name="#" placeholder="RUT">
+                            <div class="form__element">
+                              <div class="form__input">
+                                <input type="rut" name="#" placeholder="Ingrese rut sin puntos ni guión" required class="input-rut">
                               </div>
                             </div>
                           </div>
@@ -351,17 +344,10 @@
                               </div>
                             </div>
                           </div>
-                          <div class="col-md-2">
-                            <div class="form__element"> 
-                              <div class="form__input"> 
-                                <input type="text" name="#" value="+569" disabled>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-4">
-                            <div class="form__element"> 
-                              <div class="form__input"> 
-                                <input type="text" name="#" placeholder="Ingresa tu teléfono">
+                          <div class="col-md-6">
+                            <div class="form__element">
+                              <div class="form__input">
+                                <input id="phone" placeholder="Teléfono" type="text" name="#" value="+569" required>
                               </div>
                             </div>
                           </div>
@@ -413,24 +399,24 @@
                     </div>
                     <div class="section__form">
                       <h4 class="section__title">Llena los siguientes datos</h4>
-                      <form class="form">
+                      <form class="form form--validation">
                         <div class="cols">
                           <div class="col-md-6">
                             <div class="form__element"> 
                               <div class="form__input"> 
                                 <select name="#">
                                   <option value="#" disabled selected>Selecciona el mall</option>
-                                  <option value="#">Feugiat aenean varius
+                                  <option value="#">Laoreet quis facilisis
                                   </option>
-                                  <option value="#">Pretium facilisis habitasse
+                                  <option value="#">Diam litora etiam
                                   </option>
-                                  <option value="#">Habitant ultrices non
+                                  <option value="#">Lacus consectetur facilisis
                                   </option>
-                                  <option value="#">Hendrerit quisque proin
+                                  <option value="#">Magna morbi sapien
                                   </option>
-                                  <option value="#">Tincidunt torquent urna
+                                  <option value="#">Sem pellentesque nullam
                                   </option>
-                                  <option value="#">Aliquam eros aliquet
+                                  <option value="#">Elementum placerat tortor
                                   </option>
                                 </select>
                               </div>
@@ -441,26 +427,26 @@
                               <div class="form__input"> 
                                 <select name="#">
                                   <option value="#" disabled selected>Selecciona tienda</option>
-                                  <option value="#">Consectetur libero donec
+                                  <option value="#">Quisque etiam erat
                                   </option>
-                                  <option value="#">Nibh phasellus scelerisque
+                                  <option value="#">Arcu netus congue
                                   </option>
-                                  <option value="#">Quisque quis eget
+                                  <option value="#">Nostra pellentesque suscipit
                                   </option>
-                                  <option value="#">Est nisl egestas
+                                  <option value="#">Consectetur fames ut
                                   </option>
-                                  <option value="#">Libero vivamus congue
+                                  <option value="#">Suscipit volutpat cras
                                   </option>
-                                  <option value="#">Sed iaculis lacus
+                                  <option value="#">Malesuada justo metus
                                   </option>
                                 </select>
                               </div>
                             </div>
                           </div>
                           <div class="col-md-12"> 
-                            <div class="form__element"> 
-                              <div class="form__input"> 
-                                <input type="text" name="#" placeholder="Rut">
+                            <div class="form__element">
+                              <div class="form__input">
+                                <input type="rut" name="#" placeholder="Ingrese rut sin puntos ni guión" required class="input-rut">
                               </div>
                             </div>
                           </div>
@@ -477,6 +463,23 @@
           </div>
         </div>
       </section>
+    </div>
+    <div class="modal modal--confirmation modal--in">
+      <div class="modal__back"></div>
+      <div class="modal__front">
+        <div class="modal__box">
+          <div class="modal__close"><span class="fa fa-close"></span></div>
+          <div class="modal__body">
+            <div class="modal__content">
+              <div class="modal__icon"> <img src="img/icons/icon-1.svg"></div>
+              <h3 class="modal__title">Etiam aenean interdum fringilla vulputate platea
+              </h3>
+              <p>Facilisis rutrum lacinia consequat cubilia sagittis cubilia dictumst aptent curae. Semper cubilia diam nibh metus urna ac nec consectetur donec faucibus pulvinar auctor ut suspendisse.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <footer>
       <div class="footer__wrap"> 

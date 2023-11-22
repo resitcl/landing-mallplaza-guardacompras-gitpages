@@ -641,141 +641,140 @@ app.form = {
   }
 };
 
-app.forms = {
+app.form = {
   init: function() {
-    $("form").each(function() {
-      var ck, form;
-      form = $(this);
-      form.find("[autocomplete='off']").each(function() {
-        var input;
-        input = $(this);
-        return setTimeout(function() {
-          input.val("");
-          return input.closest(".form__element").removeClass("form__element--filled");
-        }, 400);
-      });
-      form.find("input,select,textarea").on("focus", function() {
-        return $(this).closest(".form__element").addClass("form__element--focused");
-      });
-      form.find("input,select,textarea").on("blur", function() {
-        var formEl;
-        formEl = $(this).closest(".form__element");
-        formEl.removeClass("form__element--focused");
-        if ($(this).val()) {
-          return formEl.addClass("form__element--filled");
-        } else {
-          return formEl.removeClass("form__element--filled");
-        }
-      });
-      ck = form.find("input[type='checkbox'][data-show]");
-      if (ck.length) {
-        app.forms.checkboxCondition(ck);
-        return ck.change(function() {
-          return app.forms.checkboxCondition(ck);
-        });
+    var regex;
+    regex = /[^+\d]/g;
+    $('#phone').keyup(function() {
+      if ($('#phone').val() === '') {
+        $('#phone').val('+569');
       }
+      return $('#phone').val($('#phone').val().replace(regex, ''));
     });
-    return app.forms.prettySelect.init();
+    return $(app.form.classes.container).each(function() {
+      return app.form.assign($(this));
+    });
   },
-  checkboxCondition: function(chkbx) {
-    var clss;
-    clss = chkbx.attr("data-show");
-    if (chkbx.is(":checked")) {
-      return $(clss).show();
+  classes: {
+    container: ".form--validation",
+    item: ".form__element",
+    inputs: "input,select,textarea"
+  },
+  assign: function(form, callback) {
+    return form.find(app.form.classes.inputs).on("blur", function() {
+      return app.form.validate($(this).closest(app.form.classes.item));
+    });
+  },
+  validateGroup: function(container) {
+    var pass;
+    pass = true;
+    container.find(app.form.classes.item).each(function() {
+      if (!app.form.validate($(this))) {
+        pass = false;
+      }
+      return true;
+    });
+    return pass;
+  },
+  validate: function(el) {
+    var account, input, pass, phone, rut, rut_nuevo;
+    input = el.find(app.form.classes.inputs);
+    pass = true;
+    if (!input.val()) {
+      pass = false;
+    }
+    if (input.attr("type") === 'rut') {
+      rut = input.val();
+      if (app.form.validaRut(rut) === true) {
+        rut_nuevo = app.form.formateaRut(rut);
+        $(".input-rut").val(rut_nuevo);
+      } else {
+        $(".input-rut").val("");
+        pass = false;
+      }
+    }
+    if (input.attr("number") === 'phone') {
+      phone = input.val();
+      if (phone.length >= 9) {
+        console.log("");
+      } else {
+        $(".input-phone").val("");
+        pass = false;
+      }
+    }
+    if (input.attr("number") === 'account') {
+      account = input.val();
+      if (account.length >= 4) {
+        console.log("");
+      } else {
+        $(".input-account").val("");
+        pass = false;
+      }
+    }
+    if (input.attr("number") === 'serie') {
+      account = input.val();
+      if (account.length >= 9 && account.length <= 12) {
+        console.log("");
+      } else {
+        $(".input-serie").val("");
+        pass = false;
+      }
+    }
+    if (!pass) {
+      el.addClass(app.form.classes.item.replace(".", "") + "--error");
     } else {
-      return $(clss).hide();
+      el.removeClass(app.form.classes.item.replace(".", "") + "--error");
+    }
+    return pass;
+  },
+  validaRut: function(rut) {
+    var M, P, S, T, V;
+    T = rut.replace(/[^0-9kK]+/g, "").slice(0, -1);
+    P = parseInt(T);
+    M = 0;
+    S = 1;
+    while (T) {
+      S = (S + T % 10 * (9 - (M++ % 6))) % 11;
+      T = Math.floor(T / 10);
+    }
+    if (S) {
+      V = S - 1;
+    } else {
+      V = 'K';
+    }
+    if ((V === "K" && rut.slice(-1).toUpperCase() === V) || (V !== "K" && parseInt(rut.slice(-1)) === V)) {
+      return true;
+    } else {
+      return false;
     }
   },
-  prettySelect: {
-    init: function() {
-      this.create();
-      return this.events();
-    },
-    create: function() {
-      return $(".form__select").each(function() {
-        var html_icon, html_options, html_value, options;
-        options = [];
-        $(this).find("select option").each(function() {
-          if ($(this).val() && $(this).text()) {
-            return options.push("<div class='form__select__option' value='" + $(this).val() + "'>" + $(this).text() + "</div>");
-          }
-        });
-        html_value = "<div class='form__select__value'></div>";
-        html_options = "<div class='form__select__options'>" + options.join("") + "</div>";
-        html_icon = "<div class='form__select__icon'><span class='fa fa-angle-down'></span></div>";
-        $(this).append(html_value + html_options + html_icon);
-        if ($(".form--filterinvestors").attr("data-filter")) {
-          console.log("entro a la condicion");
-          return $(".form__select__option").each(function() {
-            var datafilter;
-            console.log("entro al each");
-            datafilter = $(".form--filterinvestors").attr("data-filter");
-            console.log(datafilter);
-            console.log($(this).text());
-            if ($(this).text() === datafilter) {
-              $(this).addClass("selected");
-              return $(".form__select__value").text(datafilter);
-            }
-          });
+  formateaRut: function(rut) {
+    var actual, actualLimpio, dv, i, inicio, j, letra, rutPuntos, sinPuntos;
+    actual = rut.replace(/^0+/, '');
+    if (actual !== '' && actual.length > 1) {
+      sinPuntos = actual.replace(/\./g, '');
+      actualLimpio = sinPuntos.replace(/-/g, '');
+      inicio = actualLimpio.substring(0, actualLimpio.length - 1);
+      rutPuntos = '';
+      i = 0;
+      j = 1;
+      i = inicio.length - 1;
+      while (i >= 0) {
+        letra = inicio.charAt(i);
+        rutPuntos = letra + rutPuntos;
+        if (j % 3 === 0 && j <= inicio.length - 1) {
+          rutPuntos = '.' + rutPuntos;
         }
-      });
-    },
-    events: function() {
-      $(document).on("click", function(e) {
-        return app.forms.prettySelect.blur();
-      });
-      $(".form__select").click(function(e) {
-        e.stopPropagation();
-        app.forms.prettySelect.blur();
-        return app.forms.prettySelect.focus($(this));
-      });
-      $(".form__select__option").click(function(e) {
-        var formSelect;
-        e.stopPropagation();
-        $(this).siblings().removeClass("selected");
-        $(this).addClass("selected");
-        formSelect = $(this).closest(".form__select");
-        formSelect.find("select").val($(this).attr("value"));
-        formSelect.find(".form__select__value").html($(this).text());
-        return app.forms.prettySelect.blur();
-      });
-      return $('.form--filterinvestors .form__select__option').on('click', function() {
-        var url, urlfinal, valor;
-        valor = $(this).text();
-        if (valor === "Todas") {
-          url = $('.form--filterinvestors').data('url');
-          urlfinal = url + "?filter=" + "all";
-          if ($(this).parents(".form--filterinvestors").attr("data-type") === "event") {
-            urlfinal = urlfinal + "&type=event";
-            return window.location.href = urlfinal;
-          } else {
-            return window.location.href = urlfinal;
-          }
-        } else {
-          console.log($(this).parents(".form--filterinvestors").attr("data-type"));
-          url = $('.form--filterinvestors').data('url');
-          urlfinal = url + "?filter=" + valor;
-          if ($(this).parents(".form--filterinvestors").attr("data-type") === "event") {
-            urlfinal = urlfinal + "&type=event";
-            return window.location.href = urlfinal;
-          } else {
-            return window.location.href = urlfinal;
-          }
-        }
-      });
-    },
-    focus: function(el) {
-      el.addClass("opened");
-      return el.closest(".form__element").addClass("form__element--focused");
-    },
-    blur: function() {
-      return $(".form__select").each(function() {
-        $(this).removeClass("opened").closest(".form__element").removeClass("form__element--focused");
-        if ($(this).find("select").val()) {
-          return $(this).closest(".form__element").addClass("form__element--filled");
-        }
-      });
+        j++;
+        i--;
+      }
+      dv = actualLimpio.substring(actualLimpio.length - 1);
+      if (dv === "K") {
+        dv = "k";
+      }
+      rutPuntos = rutPuntos + '-' + dv;
     }
+    return rutPuntos;
   }
 };
 
@@ -921,9 +920,14 @@ app.loader = {
 
 app.modal = {
   init: function() {
-    return $(".modal__close").click(function() {
+    $(".modal__close").click(function() {
       app.modal.close($(this).closest(".modal"));
       return $(".modal--docs .modal__front").removeClass("modal__front--openinfo");
+    });
+    return $('.modal').click(function(e) {
+      if ($(e.target).hasClass('modal__front')) {
+        return app.modal.close($(this).closest(".modal"));
+      }
     });
   },
   open: function(elementclass) {
